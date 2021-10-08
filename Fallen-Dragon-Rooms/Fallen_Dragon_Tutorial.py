@@ -295,10 +295,10 @@ while True: # game loop
                 time.sleep(.3)
                 gateway.shapesize(stretch_wid=10 * x, stretch_len=10 * x)
             pen.write("Tutorial Room complete", align="center", font=("Comic Sans",24,"normal"))
-            time.sleep(10)        
+            time.sleep(5)        
     
             wn.bye()
-            os.system('python3 Fallen-Dragon/Fallen-Dragon-Rooms/Fallen_Dragon_Room_One.py')
+            os.system('python3 /Fallen-Dragon-Rooms/Fallen_Dragon_Room_One.py')
             #os.system('python3 Fallen-Dragon/Fallen-Dragon-Rooms/Fallen_Dragon_Room_One.py')
             
         if player.xcor() > 100 and player.ycor() > 100:
