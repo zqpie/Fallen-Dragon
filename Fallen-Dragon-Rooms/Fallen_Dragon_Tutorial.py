@@ -298,8 +298,8 @@ while True: # game loop
             time.sleep(10)        
     
             wn.bye()
-            #os.system('python3 Fallen-Dragon/Fallen-Dragon-Rooms/Fallen_Dragon_Room_One.py')
             os.system('python3 Fallen-Dragon/Fallen-Dragon-Rooms/Fallen_Dragon_Room_One.py')
+            #os.system('python3 Fallen-Dragon/Fallen-Dragon-Rooms/Fallen_Dragon_Room_One.py')
             
         if player.xcor() > 100 and player.ycor() > 100:
             playerYEnable = True
