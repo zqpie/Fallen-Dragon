@@ -48,7 +48,7 @@ if True:
     wn.addshape('hole.gif')
     wn.addshape('coin.gif')
     gateway = turtle.Turtle()
-    gateway.speed(0)
+    #gateway.speed(0)
     gateway.shape('hole.gif')
     gateway.penup()
     #gateway.color("red")
@@ -297,7 +297,7 @@ while True: # game loop
             time.sleep(10)        
     
             wn.bye()
-            os.system('python3 ~/Software/vs/Fallen_Dragon/Fallen_Dragon_Room_One.py')
+            os.system('python3 Fallen-Dragon/Fallen-Dragon-Rooms/Fallen_Dragon_Room_One.py')
             
         if player.xcor() > 100 and player.ycor() > 100:
             playerYEnable = True
