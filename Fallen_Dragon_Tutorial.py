@@ -2,7 +2,7 @@ import turtle, time
 from os import path
 import os
 wn = turtle.Screen()
-wn.title("TKgame by zpie")
+wn.title("Fallen Dragon by zpie")
 wn.addshape('mario.gif')
 wn.bgcolor("white")
 wn.setup(width=800, height = 600)
@@ -15,15 +15,32 @@ pen.hideturtle()
 pen.goto(0,260)
 
 intro = True
+story = False
 if intro:
 # intro
-    pen.write("Welcome To TKland", align="center",font=("Comic Sans",24,"normal"))
-    time.sleep(3)
-    pen.clear()
-    pen.write("Tkland consists of square maps, the goal is to get to the gateway", align="center",font=("Comic Sans",14,"normal"))
-    time.sleep(4)
-    pen.clear()
-    pen.write("the gateway is uselly near the beginning of the level, but cannot be reached from the beggining", align="center",font=("Comic Sans",12,"normal"))
+    if story:
+        pen.write("Welcome To the relm of the fallen dragon", align="center",font=("Comic Sans",24,"normal"))
+        time.sleep(3)
+        pen.clear()
+        pen.write("Legend has it that thousands of years ago there was a mighty dragon", align="center",font=("Comic Sans",12,"normal"))
+        time.sleep(5)
+        pen.clear()
+        pen.write("he held power over all of the lands", align="center",font=("Comic Sans",15,"normal"))
+        time.sleep(3)
+        pen.clear()
+        pen.write("as the legend says, his inheritance was given to his great grandson who is was the current king, untill last night", align="center",font=("Comic Sans",10,"normal"))
+        time.sleep(5)
+        pen.clear()
+        pen.write("he died last night and you are here for his gold", align="center",font=("Comic Sans",24,"normal"))
+        time.sleep(4)
+        pen.clear()
+        pen.write("you are a very good bandit,and you are planning on sneaking in to the castle tonight, so we need to get you ready", align="center",font=("Comic Sans",10,"normal"))
+        time.sleep(4)
+        pen.clear()
+        pen.write("the castle consists of square rooms, the goal is to get to the gateway, witch leads to the next room", align="center",font=("Comic Sans",12,"normal"))
+        time.sleep(4)
+        pen.clear()
+        pen.write("the gateway is uselly near the beginning of the room, but cannot be reached from the beggining", align="center",font=("Comic Sans",12,"normal"))
 
     gateway = turtle.Turtle()
     gateway.speed(0)
@@ -37,8 +54,6 @@ if intro:
     gateway.goto(-330,-20)
     gateway.color("white")
     pen.clear()
-    pen.write("when your player is black you can move horizontaly", align="center",font=("Comic Sans",15,"normal"))
-    ##objects
     player = turtle.Turtle()
     player.speed(0)
     #player.shape("mario.gif")   # make player look like mario
@@ -49,11 +64,36 @@ if intro:
     player.color("black")
     player.penup()
     player.goto(0,0)
-    time.sleep(4)
+    #time.sleep(4)
+    pen.clear()
+    pen.write("when your player is black you can move horizontaly", align="center",font=("Comic Sans",15,"normal"))
+    for p in range (0,10):
+        p += 1
+        time.sleep(.1)
+        wn.update()
+        player.setx(player.xcor() + 20)
+    for p in range (0,10):
+        p += 1
+        time.sleep(.1)
+        wn.update()
+        player.setx(player.xcor() - 20)
+    time.sleep(1)
+    ##objects
     pen.clear()
     pen.write("when your player is blue you can move verticaly", align="center",font=("Comic Sans",15,"normal"))
     player.color("blue")
-    time.sleep(3)
+    for p in range (0,10):
+        p += 1
+        time.sleep(.1)
+        wn.update()
+        player.sety(player.ycor() + 20)
+    for p in range (0,10):
+        p += 1
+        time.sleep(.1)
+        wn.update()
+        player.sety(player.ycor() - 20)
+    time.sleep(1)
+    #time.sleep(3)
     pen.clear()
     pen.write("Your player starts in the bottom left", align="left",font=("Comic Sans",15,"normal"))
 
@@ -162,7 +202,7 @@ def removeObject(Object):
 #wn.onkeypress(paddleBdown, "Down")
 points = 0  # player points
 bpmsgRead = False  # was the bounce pad measage read
-levelDone = False # is the level done yet, used for ending animation
+roomDone = False # is the room done yet, used for ending animation
 gateway.color("red")
 while True: # game loop
 
@@ -196,7 +236,7 @@ while True: # game loop
             pen.clear()
         ScreenWasCleared = True
         if coin1Grabed == False:
-            if levelDone == False:
+            if roomDone == False:
                 pen.write("Collect these coins", align="center",font=("Comic Sans",22,"normal"))
   #  if player.xcor() == coin.xcor:
    #     print("pointgivin")
@@ -209,8 +249,9 @@ while True: # game loop
             pen.write("Great, you can use these later in the store", align="center", font=("Comic Sans",12,"normal"))
     print(player.xcor(), player.ycor())   # print players coordinants
     if isPlayerInBlueBox():
+    #if areObjectsTouching(player, wall, ):
         #print("player is in blue box")
-        player.sety(player.ycor() + 50)
+        player.sety(player.ycor() + 100)
 
         #pen.clear()
         #for x in range (0,10):
@@ -223,7 +264,7 @@ while True: # game loop
         playerJump = True
         player.color("blue")
     if areObjectsTouching(player, gateway, 50):
-        levelDone = True
+        roomDone = True
         pen.clear()
         removeObject(player)
         removeObject(wall)
@@ -236,7 +277,7 @@ while True: # game loop
             x += 1
             time.sleep(.3)
             gateway.shapesize(stretch_wid=10 * x, stretch_len=10 * x)
-        pen.write("Level One complete", align="center", font=("Comic Sans",24,"normal"))
+        pen.write("room One complete", align="center", font=("Comic Sans",24,"normal"))
         time.sleep(10)
 
         
