@@ -280,7 +280,7 @@ while True: # game loop
                 time.sleep(.3)
                 gateway.shapesize(stretch_wid=10 * x, stretch_len=10 * x)
             pen.write("Tutorial Room complete", align="center", font=("Comic Sans",24,"normal"))
-            time.sleep(10)        
+            time.sleep(5)        
     
             wn.bye()
             os.system('python3 ~/Software/vs/Fallen_Dragon/Fallen_Dragon_Room_One.py')
