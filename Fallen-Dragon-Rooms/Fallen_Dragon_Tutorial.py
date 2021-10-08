@@ -1,6 +1,7 @@
 import turtle, time
 from os import path
 import os
+print("transfer accepted, python script: Room one")
 wn = turtle.Screen()
 wn.title("Fallen Dragon by zpie")
 #wn.addshape('mario.gif')
@@ -298,7 +299,7 @@ while True: # game loop
     
             wn.bye()
             #os.system('python3 Fallen-Dragon/Fallen-Dragon-Rooms/Fallen_Dragon_Room_One.py')
-            os.system('python3 Fallen-Dragon-Rooms/Fallen_Dragon_Room_One.py')
+            os.system('python3 Fallen-Dragon/Fallen-Dragon-Rooms/Fallen_Dragon_Room_One.py')
             
         if player.xcor() > 100 and player.ycor() > 100:
             playerYEnable = True
