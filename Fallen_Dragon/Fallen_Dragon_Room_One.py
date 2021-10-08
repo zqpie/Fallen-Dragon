@@ -43,22 +43,42 @@ middleblock.penup()
 middleblock.goto(0,0)
 middleblock.shapesize(stretch_wid=20, stretch_len=25)
 
-
-enemy = turtle.Turtle()
-enemy.speed(0)
-enemy.color("red")
-enemy.shape("triangle")
-enemy.penup()
-enemy.goto(300,-285)
-enemy.left(90)
-
 pen = turtle.Turtle()
 pen.speed(0)
 pen.color("black")
 pen.penup()
 pen.hideturtle()
 pen.goto(0,260)
-pen.write("Welcome", align="center",font=("arial",24,"normal"))
+#pen.write("Welcome", align="center",font=("arial",24,"normal"))
+
+pen.write("Room One", align="center", font=("Comic Sans",24,"normal"))
+
+enemy = turtle.Turtle()
+#enemy.speed(0)
+enemy.color("red")
+enemy.shape("triangle")
+enemy.penup()
+enemy.goto(300,-285)
+enemy.left(90)
+
+enemy2 = turtle.Turtle()
+#enemy2.speed(0)
+enemy2.color("red")
+enemy2.shape("triangle")
+enemy2.penup()
+enemy2.goto(250,-250)
+enemy2.left(90)
+
+enemy3 = turtle.Turtle()
+#enemy3.speed(0)
+enemy3.color("red")
+enemy3.shape("triangle")
+enemy3.penup()
+enemy3.goto(250,250)
+enemy3.left(90)
+
+
+points = 0
 
 coin = turtle.Turtle()
 coin.speed(0)
@@ -93,6 +113,9 @@ def playerdown ():
 def removeObject(Object):
     Object.color("white")
     Object.setx(1000)
+
+coin1Grabed = False
+
 def clearObjects():
 
     removeObject(player)
@@ -100,19 +123,12 @@ def clearObjects():
     removeObject(coin)
     removeObject(enemy)
     removeObject(middleblock)
+    removeObject(enemy3)
+    removeObject(enemy2)
 
 
 def ending(type):
     if type == ('win'):
-        clearObjects()
-        gateway.setx(0)
-        gateway.sety(0)
-        gateway.color("black")
-        for x in range(0,5):
-            x += 1
-            time.sleep(.3)
-            gateway.shapesize(stretch_wid=10 * x, stretch_len=10 * x)
-    if type == ('loose'):
         clearObjects()
         gateway.setx(0)
         gateway.sety(0)
@@ -121,9 +137,25 @@ def ending(type):
             x += 1
             time.sleep(.3)
             gateway.shapesize(stretch_wid=10 * x, stretch_len=10 * x)
+    if type == ('loose'):
+        clearObjects()
+        gateway.setx(0)
+        gateway.sety(0)
+        gateway.color("black")
+        pen.color("red")
+        pen.write("You Died", align="center", font=("Comic Sans",24,"normal"))
+        
+
+        for x in range(0,5):
+            x += 1
+            time.sleep(.3)
+            gateway.shapesize(stretch_wid=10 * x, stretch_len=10 * x)
     time.sleep(5)
 
 
+
+#time.sleep(4)
+pen.clear()
 wn.listen()
 wn.onkeypress(playerup, "w")
 wn.onkeypress(playerdown, "s")
@@ -141,8 +173,16 @@ def areObjectsTouching(ObjectOne,ObjectTwo, size):
 gateway.color("red")
 gateway.goto(-330,-20)
 while True:
-    print(player.xcor(),player.ycor(), enemy.xcor(), enemy.ycor())
+    print(player.xcor(), player.ycor(), "points:", points)
     wn.update()
+    if enemy3.xcor() < 300:
+        enemy3.setx(enemy3.xcor() + 5)
+        #time.sleep(1)
+        #time.sleep(.1)
+    if enemy3.xcor() > 100:
+        enemy3.setx(enemy3.xcor() - 5)
+        #time.sleep(1)
+        #time.sleep(.1)
     if player.xcor() > 260:
         playerYEnable = True
         player.color("blue")
@@ -164,10 +204,18 @@ while True:
         player.color("blue")
         playerYEnable = True
         pen.write("you are now in a antigravity zone", align="center",font=("arial",22,"normal"))
-    if areObjectsTouching(player,enemy, 20):
+    if areObjectsTouching(player,enemy, 20) or areObjectsTouching(player, enemy3, 20) or areObjectsTouching(player, enemy2, 20):
         ending('loose')
     if areObjectsTouching(player, gateway, 50):
         ending('win')
-        
+    if areObjectsTouching(player, coin, 20):
+            if coin1Grabed == False:
+                points += 1
+                coin1Grabed = True
+                removeObject(coin)
+                pen.clear()
+                pen.write("coin collected", align="center", font=("Comic Sans",12,"normal"))
+                time.sleep(.5)
+                pen.clear()
         
         

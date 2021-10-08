@@ -208,83 +208,103 @@ gateway.color("red")
 while True: # game loop
 
 
-
-    wn.update()
-    #print(wn.setup)
-    #pen.clear()
-    #print(points)
-    #pen.write("Points =",points, align="left",font=("Comic Sans",22,"normal"))
-
-
-    if player.xcor() > 100 and player.xcor() < 230: # are we in the walk-up zone
-        mapOriantation = 'upRight'
-        
-        if ScreenWasCleared==False:
-            pen.clear()
-        ScreenWasCleared = True
-        if bpmsgRead == False:
-            pen.write("these blue boxes are bounce pads", align="center",font=("Comic Sans",22,"normal"))
-        bpmsgRead = True
-        #pen.write("when your player is blue that means that they can walk forward", align="center", font=("Comic Sans",22,"normal"))
-    
-
-
-
-    if player.xcor() > 230 and player.xcor() < 260:
-        ScreenWasCleared = False
-    if player.xcor() >280 and player.ycor() > -250:
-        if ScreenWasCleared == False:
-            pen.clear()
-        ScreenWasCleared = True
-        if coin1Grabed == False:
-            if roomDone == False:
-                pen.write("Collect these coins", align="center",font=("Comic Sans",22,"normal"))
-  #  if player.xcor() == coin.xcor:
-   #     print("pointgivin")
-
-    if areObjectsTouching(player, coin, 20):
-        if coin1Grabed == False:
-            points += 1
-            coin1Grabed = True
-            removeObject(coin)
-            pen.clear()
-            pen.write("Great, you can use these later in the store", align="center", font=("Comic Sans",12,"normal"))
-    print(player.xcor(), player.ycor())   # print players coordinants
-    if isPlayerInBlueBox():
-    #if areObjectsTouching(player, wall, ):
-        #print("player is in blue box")
-        player.sety(player.ycor() + 100)
-
+    if roomDone == False:
+        wn.update()
+        #print(wn.setup)
         #pen.clear()
-        #for x in range (0,10):
-         #   time.sleep(.5)
-          #  wn.update()
-    if mapOriantation == 'right':
-        playerJump = False
-        player.color("black")
-    if mapOriantation == 'upRight':
-        playerJump = True
-        player.color("blue")
-    if areObjectsTouching(player, gateway, 50):
-        roomDone = True
-        pen.clear()
-        removeObject(player)
-        removeObject(wall)
-        removeObject(coin)
-        removeObject(arrow)
-        removeObject(arrow2)
-        gateway.setx(0)
-        gateway.sety(0)
-        for x in range(0,5):
-            x += 1
-            time.sleep(.3)
-            gateway.shapesize(stretch_wid=10 * x, stretch_len=10 * x)
-        pen.write("Tutorial Room complete", align="center", font=("Comic Sans",24,"normal"))
-        time.sleep(10)        
-  
-        wn.bye()
-        os.system('python3 Fallen_Dragon_Room_One.py')
+        #print(points)
+        #pen.write("Points =",points, align="left",font=("Comic Sans",22,"normal"))
+
+
+        if player.xcor() > 100 and player.xcor() < 230: # are we in the walk-up zone
+            mapOriantation = 'upRight'
+            
+            if ScreenWasCleared==False:
+                pen.clear()
+            ScreenWasCleared = True
+            if bpmsgRead == False:
+                pen.write("these blue boxes are bounce pads", align="center",font=("Comic Sans",22,"normal"))
+            bpmsgRead = True
+            #pen.write("when your player is blue that means that they can walk forward", align="center", font=("Comic Sans",22,"normal"))
         
 
 
-        
+
+        if player.xcor() > 230 and player.xcor() < 260:
+            ScreenWasCleared = False
+        if player.xcor() >280 and player.ycor() > -250:
+            if ScreenWasCleared == False:
+                pen.clear()
+            ScreenWasCleared = True
+            if coin1Grabed == False:
+                if roomDone == False:
+                    pen.write("Collect these coins", align="center",font=("Comic Sans",22,"normal"))
+    #  if player.xcor() == coin.xcor:
+    #     print("pointgivin")
+
+        if areObjectsTouching(player, coin, 20):
+            if coin1Grabed == False:
+                points += 1
+                coin1Grabed = True
+                removeObject(coin)
+                pen.clear()
+                pen.write("Great, you can use these later in the store", align="center", font=("Comic Sans",12,"normal"))
+        print(player.xcor(), player.ycor())   # print players coordinants
+        if isPlayerInBlueBox():
+        #if areObjectsTouching(player, wall, ):
+            #print("player is in blue box")
+            player.sety(player.ycor() + 100)
+
+            #pen.clear()
+            #for x in range (0,10):
+            #   time.sleep(.5)
+            #  wn.update()
+        if mapOriantation == 'right':
+            playerJump = False
+            player.color("black")
+        if mapOriantation == 'upRight':
+            playerJump = True
+            player.color("blue")
+        if areObjectsTouching(player, gateway, 50):
+            roomDone = True
+            pen.clear()
+            removeObject(player)
+            removeObject(wall)
+            removeObject(coin)
+            removeObject(arrow)
+            removeObject(arrow2)
+            gateway.setx(0)
+            gateway.sety(0)
+            for x in range(0,5):
+                x += 1
+                time.sleep(.3)
+                gateway.shapesize(stretch_wid=10 * x, stretch_len=10 * x)
+            pen.write("Tutorial Room complete", align="center", font=("Comic Sans",24,"normal"))
+            time.sleep(10)        
+    
+            wn.bye()
+            os.system('python3 ~/Software/vs/Fallen_Dragon/Fallen_Dragon_Room_One.py')
+            
+        if player.xcor() > 100 and player.ycor() > 100:
+            playerYEnable = True
+            player.color("blue")
+            playerYEnable = True
+        elif player.xcor() < 100 and player.ycor() > 0:# if top left
+            player.color("black")
+            mapOriantation = ('right')
+            playerYEnable = False
+            if player.ycor() > 0 and player.xcor() > -100: # if top middle
+                player.sety(110)
+            elif player.ycor() > 0 and player.xcor() < -100:
+                if player.color() != ("blue"):
+                    player.color("blue")
+            onceClear = True
+        if player.ycor() < 0 and player.xcor() > -100 and player.xcor() < 100:  # if the player is on the botom level and in the middle
+                player.sety(-285)
+        elif player.xcor() < -100 and player.ycor() > 0:
+            player.color("blue")
+            mapOriantation = ('upRight')
+            playerYEnable = True
+            #pen.write("you are now in a antigravity zone", align="center",font=("arial",22,"normal"))
+
+            
