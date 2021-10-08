@@ -232,7 +232,7 @@ while True:
             wn.bye()
             #os.system('python3 Fallen-Dragon/Fallen-Dragon-Rooms/Fallen_Dragon_Room_Two.py')
  
-            os.system('python3 Fallen-Dragon-Rooms/Fallen_Dragon_Room_One.py')
+            os.system('python3 Fallen-Dragon-Rooms/Fallen_Dragon_Room_Two.py')
         if areObjectsTouching(player, coin, 20):
                 if coin1Grabed == False:
                     points += 1
