@@ -3,4 +3,4 @@
 Not sure what this is yet. try for yourself
 
 
-open the main folder and run the tutorial
+Just open the main folder and run the tutorial
