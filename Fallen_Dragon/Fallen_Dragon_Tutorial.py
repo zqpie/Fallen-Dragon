@@ -3,9 +3,12 @@ from os import path
 import os
 wn = turtle.Screen()
 wn.title("Fallen Dragon by zpie")
-wn.addshape('mario.gif')
+#wn.addshape('mario.gif')
 wn.bgcolor("white")
 wn.setup(width=800, height = 600)
+
+wn.addshape('BlueGuy.gif')
+wn.addshape('blackGuy.gif')
 
 pen = turtle.Turtle()
 pen.speed(0)
@@ -62,7 +65,8 @@ if True:
     player.shape("square")
     #player.shapesize(stretch_len=-10 , stretch_wid=-10)
     #player.turtlesize(stretch_len=-10, stretch_wid=-10)
-    player.color("black")
+    player.shape('blackGuy.gif')
+    #wn.addshape('mario40x80.gif')
     player.penup()
     player.goto(0,0)
     #time.sleep(4)
@@ -82,7 +86,7 @@ if True:
     ##objects
     pen.clear()
     pen.write("when your player is blue you can move verticaly", align="center",font=("Comic Sans",15,"normal"))
-    player.color("blue")
+    player.shape('BlueGuy.gif')
     for p in range (0,10):
         p += 1
         time.sleep(.1)
@@ -103,7 +107,7 @@ if True:
 # /intro
 
 
-player.color("black")
+player.shape('blackGuy.gif')
 player.goto(-400,-285)
 
 
@@ -253,7 +257,7 @@ while True: # game loop
         if isPlayerInBlueBox():
         #if areObjectsTouching(player, wall, ):
             #print("player is in blue box")
-            player.sety(player.ycor() + 100)
+            player.sety(player.ycor() + 200)
 
             #pen.clear()
             #for x in range (0,10):
@@ -261,10 +265,10 @@ while True: # game loop
             #  wn.update()
         if mapOriantation == 'right':
             playerJump = False
-            player.color("black")
+            player.shape('blackGuy.gif')
         if mapOriantation == 'upRight':
             playerJump = True
-            player.color("blue")
+            player.shape('BlueGuy.gif')
         if areObjectsTouching(player, gateway, 50):
             roomDone = True
             pen.clear()
@@ -280,29 +284,29 @@ while True: # game loop
                 time.sleep(.3)
                 gateway.shapesize(stretch_wid=10 * x, stretch_len=10 * x)
             pen.write("Tutorial Room complete", align="center", font=("Comic Sans",24,"normal"))
-            time.sleep(5)        
+            time.sleep(10)        
     
             wn.bye()
             os.system('python3 ~/Software/vs/Fallen_Dragon/Fallen_Dragon_Room_One.py')
             
         if player.xcor() > 100 and player.ycor() > 100:
             playerYEnable = True
-            player.color("blue")
+            player.shape('BlueGuy.gif')
             playerYEnable = True
         elif player.xcor() < 100 and player.ycor() > 0:# if top left
-            player.color("black")
+            player.shape('blackGuy.gif')
             mapOriantation = ('right')
             playerYEnable = False
             if player.ycor() > 0 and player.xcor() > -100: # if top middle
                 player.sety(110)
             elif player.ycor() > 0 and player.xcor() < -100:
                 if player.color() != ("blue"):
-                    player.color("blue")
+                    player.shape('BlueGuy.gif')
             onceClear = True
         if player.ycor() < 0 and player.xcor() > -100 and player.xcor() < 100:  # if the player is on the botom level and in the middle
                 player.sety(-285)
         elif player.xcor() < -100 and player.ycor() > 0:
-            player.color("blue")
+            player.shape('BlueGuy.gif')
             mapOriantation = ('upRight')
             playerYEnable = True
             #pen.write("you are now in a antigravity zone", align="center",font=("arial",22,"normal"))

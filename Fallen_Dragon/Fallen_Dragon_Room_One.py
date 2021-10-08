@@ -5,15 +5,16 @@ wn.title("TK by zpie")
 
 wn.bgcolor("white")
 wn.setup(width=800, height = 600)
-
+wn.addshape('BlueGuy.gif')
+wn.addshape('blackGuy.gif')
 ##objects
 player = turtle.Turtle()
 player.speed(0)
 player.shape("square")
-player.color("black")
+player.shape('blackGuy.gif')
 player.penup()
 player.goto(-400,-285)
-
+#player.shape('mario40x80.gif')
 gateway = turtle.Turtle()
 gateway.speed(0)
 gateway.shape("circle")
@@ -185,10 +186,10 @@ while True:
         #time.sleep(.1)
     if player.xcor() > 260:
         playerYEnable = True
-        player.color("blue")
+        player.shape('BlueGuy.gif')
         playerYEnable = True
     elif player.xcor() < 260:
-        player.color("black")
+        player.shape('blackGuy.gif')
         playerYEnable = False
         if onceClear == False:
             pen.clear()
@@ -196,12 +197,12 @@ while True:
             player.sety(215)
         elif player.ycor() > 0 and player.xcor() < -240:
             if player.color() != ("blue"):
-                player.color("blue")
+                player.shape('BlueGuy.gif')
         onceClear = True
         if player.ycor() < 0 and player.xcor() > -260 and player.xcor() < 240:
             player.sety(-285)
     elif player.xcor() < -260 and player.ycor > 0:
-        player.color("blue")
+        player.shape('BlueGuy.gif')
         playerYEnable = True
         pen.write("you are now in a antigravity zone", align="center",font=("arial",22,"normal"))
     if areObjectsTouching(player,enemy, 20) or areObjectsTouching(player, enemy3, 20) or areObjectsTouching(player, enemy2, 20):
