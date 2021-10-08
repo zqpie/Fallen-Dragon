@@ -9,7 +9,7 @@ wn.setup(width=800, height = 600)
 
 wn.addshape('BlueGuy.gif')
 wn.addshape('blackGuy.gif')
-
+os.system('clear')
 pen = turtle.Turtle()
 pen.speed(0)
 pen.color("black")
@@ -45,18 +45,21 @@ if True:
     time.sleep(4)
     pen.clear()
     pen.write("the gateway is uselly near the beginning of the room, but cannot be reached from the beggining", align="center",font=("Comic Sans",12,"normal"))
-
+    wn.addshape('hole.gif')
+    wn.addshape('coin.gif')
     gateway = turtle.Turtle()
     gateway.speed(0)
-    gateway.shape("circle")
+    gateway.shape('hole.gif')
     gateway.penup()
-    gateway.color("red")
+    #gateway.color("red")
+
+
     gateway.goto(0,-20)
     gateway.shapesize(stretch_wid=5, stretch_len=5)
     gateway.left(90)
     time.sleep(4)
     gateway.goto(-330,-20)
-    gateway.color("white")
+    gateway.setx(1000)
     pen.clear()
     player = turtle.Turtle()
     player.speed(0)
@@ -121,8 +124,8 @@ wall.shapesize(stretch_wid=5, stretch_len=10)
 
 coin = turtle.Turtle()
 coin.speed(0)
-coin.shape("square")
-coin.color("yellow")
+coin.shape('coin.gif')
+#coin.color("yellow")
 coin.penup()
 coin.goto(350,-100)
 #coin.shapesize(stretch_wid=5, stretch_len=1)
@@ -208,8 +211,9 @@ def removeObject(Object):
 points = 0  # player points
 bpmsgRead = False  # was the bounce pad measage read
 roomDone = False # is the room done yet, used for ending animation
-gateway.color("red")
+gateway.goto(-330,-20) # bring it back into view
 while True: # game loop
+    print("points:  ", points)
 
 
     if roomDone == False:
@@ -255,6 +259,7 @@ while True: # game loop
                 pen.write("Great, you can use these later in the store", align="center", font=("Comic Sans",12,"normal"))
         print(player.xcor(), player.ycor())   # print players coordinants
         if isPlayerInBlueBox():
+            print("player collided with BP")
         #if areObjectsTouching(player, wall, ):
             #print("player is in blue box")
             player.sety(player.ycor() + 200)
@@ -264,12 +269,15 @@ while True: # game loop
             #   time.sleep(.5)
             #  wn.update()
         if mapOriantation == 'right':
+            print("MapOriantation = right")
             playerJump = False
             player.shape('blackGuy.gif')
         if mapOriantation == 'upRight':
+            print("mapOriantaion = upRight")
             playerJump = True
             player.shape('BlueGuy.gif')
         if areObjectsTouching(player, gateway, 50):
+            print("Player collided with Gatway")
             roomDone = True
             pen.clear()
             removeObject(player)
@@ -279,6 +287,8 @@ while True: # game loop
             removeObject(arrow2)
             gateway.setx(0)
             gateway.sety(0)
+            gateway.shape("circle")
+            gateway.color("red")
             for x in range(0,5):
                 x += 1
                 time.sleep(.3)
@@ -294,10 +304,12 @@ while True: # game loop
             player.shape('BlueGuy.gif')
             playerYEnable = True
         elif player.xcor() < 100 and player.ycor() > 0:# if top left
+            print("player x < 100 and y is positive")
             player.shape('blackGuy.gif')
             mapOriantation = ('right')
             playerYEnable = False
             if player.ycor() > 0 and player.xcor() > -100: # if top middle
+                print("player y positive and x > -100")
                 player.sety(110)
             elif player.ycor() > 0 and player.xcor() < -100:
                 if player.color() != ("blue"):

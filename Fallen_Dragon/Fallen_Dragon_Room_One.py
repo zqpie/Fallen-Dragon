@@ -1,5 +1,5 @@
 import turtle, time
-
+#from Fallen_Dragon/Fallen_Dragon_Tutorial.py import points
 wn = turtle.Screen()
 wn.title("TK by zpie")
 
@@ -7,6 +7,12 @@ wn.bgcolor("white")
 wn.setup(width=800, height = 600)
 wn.addshape('BlueGuy.gif')
 wn.addshape('blackGuy.gif')
+
+wn.addshape('hole.gif')
+wn.addshape('coin.gif')
+
+wn.addshape('mine.gif')
+
 ##objects
 player = turtle.Turtle()
 player.speed(0)
@@ -17,11 +23,11 @@ player.goto(-400,-285)
 #player.shape('mario40x80.gif')
 gateway = turtle.Turtle()
 gateway.speed(0)
-gateway.shape("circle")
+gateway.shape('hole.gif')
 gateway.penup()
 gateway.color("red")
 gateway.goto(0,-20)
-gateway.shapesize(stretch_wid=5, stretch_len=5)
+#gateway.shapesize(stretch_wid=100, stretch_len=100)
 gateway.left(90)
 gateway.goto(-330,-20)
 gateway.color("white")
@@ -57,7 +63,7 @@ pen.write("Room One", align="center", font=("Comic Sans",24,"normal"))
 enemy = turtle.Turtle()
 #enemy.speed(0)
 enemy.color("red")
-enemy.shape("triangle")
+enemy.shape('mine.gif')
 enemy.penup()
 enemy.goto(300,-285)
 enemy.left(90)
@@ -65,7 +71,7 @@ enemy.left(90)
 enemy2 = turtle.Turtle()
 #enemy2.speed(0)
 enemy2.color("red")
-enemy2.shape("triangle")
+enemy2.shape('mine.gif')
 enemy2.penup()
 enemy2.goto(250,-250)
 enemy2.left(90)
@@ -73,7 +79,7 @@ enemy2.left(90)
 enemy3 = turtle.Turtle()
 #enemy3.speed(0)
 enemy3.color("red")
-enemy3.shape("triangle")
+enemy3.shape('mine.gif')
 enemy3.penup()
 enemy3.goto(250,250)
 enemy3.left(90)
@@ -83,8 +89,8 @@ points = 0
 
 coin = turtle.Turtle()
 coin.speed(0)
-coin.shape("square")
-coin.color("yellow")
+coin.shape('coin.gif')
+#coin.color("yellow")
 coin.penup()
 coin.goto(350,-100)
 
@@ -129,6 +135,7 @@ def clearObjects():
 
 
 def ending(type):
+    gateway.shape("circle")
     if type == ('win'):
         clearObjects()
         gateway.setx(0)
