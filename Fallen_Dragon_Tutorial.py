@@ -4,6 +4,9 @@ import os, json
 points = 0
 
 
+with open("wepon.json", "w") as outfile:
+    json.dump("NoGunOwnedYet", outfile)
+
 with open("data.json", "w") as outfile:
     json.dump(points, outfile)
             

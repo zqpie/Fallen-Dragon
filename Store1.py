@@ -1,6 +1,6 @@
-import turtle, time, json
+import turtle, time, json, os
 playerhasGun = False  # this is the first store in the game
-
+wepon = False
 with open('data.json', 'r') as openfile:
   
     # Reading from json file
@@ -13,22 +13,22 @@ points = (int(json_object))
 
 wn = turtle.Screen()
 wn.title("TK by zpie")
-
+wn.addshape('blackGuy.gif')
 wn.bgcolor("white")
 wn.setup(width=800, height = 600)
 
 ##objects
 player = turtle.Turtle()
 player.speed(0)
-player.shape("square")
-player.color("black")
+player.shape('blackGuy.gif')
+#player.color
 player.penup()
 player.goto(0,-285)
 
 wn.addshape('hole.gif')
 wn.addshape('blackGuy.gif')
 wn.addshape('pistole.gif')
-
+wn.addshape('blackGuyWithGun.gif')
 
 gateway = turtle.Turtle()
 gateway.speed(0)
@@ -129,10 +129,16 @@ def ending(type):
         gateway.setx(0)
         gateway.sety(0)
         gateway.color("black")
+        gateway.shape("circle")
         for x in range(0,5):
             x += 1
             time.sleep(.3)
             gateway.shapesize(stretch_wid=10 * x, stretch_len=10 * x)
+        with open("data.json", "w") as outfile:
+            json.dump(points, outfile)
+        with open("wepon.json", "w") as outfile:
+                json.dump(wepon, outfile)
+        os.system('python3 Fallen_Dragon_Room_Three.py')
     if type == ('loose'):
         clearObjects()
         gateway.setx(0)
@@ -188,20 +194,28 @@ while True:
         
         if playerhasGun == False:
             pen.clear()
-            pen.write("Gun perchiced", align="center",font=("arial",22,"normal"))
-            time.sleep(.5)
-            pen.clear()
-            points -= 1
-            pen.write(points, align="center",font=("arial",22,"normal"))
-            
-            playerhasGun = True
-            removeObject(newGun)
-            with open("wepon.json", "w") as outfile:
-                json.dump("GunOne", outfile)
+            if points > 0:
+                pen.write("Gun perchiced", align="center",font=("arial",22,"normal"))
+                player.shape('blackGuyWithGun.gif')
+                time.sleep(.5)
+                pen.clear()
+                points -= 1
+                pen.write(points, align="center",font=("arial",22,"normal"))
+                
+                playerhasGun = True
+                removeObject(newGun)
+                wepon = "GunOne"
+
+            else:
+                pen.write("Not enough coins", align="center",font=("arial",22,"normal"))
+                time.sleep(.5)
+                pen.clear()
 
 
     if areObjectsTouching(player, gateway, 50):
         ending('win')
+
+ 
         
         
         
